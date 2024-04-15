@@ -4,13 +4,15 @@ public class Profesor extends Persona{              //Heredan nombre, apellido y
 
     private String materia;     //Atributo
 
-    private Float experiencia; //Atributo
+    private Integer legajo; //Atributo
+
+    private static Integer ultimoLegajo;
 
     //Constructor
-    public Profesor(String nombre, String apellido, Float edad, String materia, Float experiencia) {
+    public Profesor(String nombre, String apellido, Float edad, String materia) {
         super(nombre, apellido, edad);
         this.materia = materia;
-        this.experiencia = experiencia;
+        this.legajo = ++ultimoLegajo;
     }
 
 
@@ -22,12 +24,8 @@ public class Profesor extends Persona{              //Heredan nombre, apellido y
         this.materia = materia;
     }
 
-    public Float getExperiencia() {
-        return experiencia;
-    }
-
-    public void setExperiencia(Float experiencia) {
-        this.experiencia = experiencia;
+    public Integer getLegajo() {
+        return legajo;
     }
 
     //METODOS

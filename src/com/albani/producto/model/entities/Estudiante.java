@@ -4,16 +4,17 @@ package com.albani.producto.model.entities;
 
 public class Estudiante extends Persona{           //Hereda nombre, apellido y edad
 
-    private String carrera;
+    private String carrera; //Atributo
 
-    private Float matricula;
+    private Integer matricula;  //Atributo
 
+    private static Integer ultimaMatricula = 0; //debe ser static sino no se autoincrementa cada vez que se crea un nuevo estudiante
 
     //Constructor
-    public Estudiante(String nombre, String apellido, Float edad, String carrera, Float matricula) {
+    public Estudiante(String nombre, String apellido, Float edad, String carrera) {
         super(nombre, apellido, edad);
         this.carrera = carrera;
-        this.matricula = matricula;
+        this.matricula = ++ultimaMatricula; //Incrementa y asigna mi matricula
     }
 
     public String getCarrera() {
@@ -24,12 +25,8 @@ public class Estudiante extends Persona{           //Hereda nombre, apellido y e
         this.carrera = carrera;
     }
 
-    public Float getMatricula() {
+    public Integer getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(Float matricula) {
-        this.matricula = matricula;
     }
 
     //METODOS
