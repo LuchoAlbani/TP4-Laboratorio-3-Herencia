@@ -1,13 +1,17 @@
-import com.albani.producto.view.Consola;
+import com.albani.producto.model.entities.Estudiante;
+import com.albani.producto.model.repository.EstudianteRepository;
 
-import javax.swing.text.View;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        /*
+        EstudianteRepository estudianteRepository = new EstudianteRepository();
+        ArrayList<Estudiante> listaEstudiante = new ArrayList<Estudiante>();
 
-        Consola star = new Consola();
-
-        //star.consola();
-
+        estudianteRepository.agregarEstudiante(listaEstudiante);
+        estudianteRepository.actualizarEstudiante(listaEstudiante);
+        estudianteRepository.mostrarListaEstudiante(listaEstudiante);
+        */
     }
 }

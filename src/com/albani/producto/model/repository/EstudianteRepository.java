@@ -23,6 +23,7 @@ public class EstudianteRepository {
 
         System.out.println("Edad: ");
         Float edad = scanner.nextFloat();
+        scanner.nextLine();
 
         System.out.println("Carrera: ");
         String carrera = scanner.nextLine();
@@ -39,7 +40,7 @@ public class EstudianteRepository {
     //FUNCION MOSTRAR LISTA ESTUDIANTE
     public void mostrarListaEstudiante(ArrayList<Estudiante> listaEstudiantes){
         for (Estudiante estudiante : listaEstudiantes){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
-            System.out.println(" "+estudiante);
+            System.out.println(" |Matricula|: "+estudiante.getMatricula()+" |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera| "+estudiante.getCarrera());
         }
     /*
      recorre la lista de estudiantes uno por uno. En cada paso del recorrido,
@@ -61,11 +62,12 @@ public class EstudianteRepository {
         for (Estudiante estudiante : listaEstudiantes){ //recorro la lista
 
             if (estudiante.getMatricula().equals(numero)){//si la matricula del estudiante actual es igual al numero que seleccione ahi implemento mi logica para modificar sus datos
+                estudianteEncontrado = true;
                 System.out.println("");
                 System.out.println("Datos del usuario que desea modificar");
                 System.out.println(" Nombre: "+estudiante.getNombre()+" Apellido: "+estudiante.getApellido()+" Edad: "+estudiante.getEdad()+" Carrera: "+estudiante.getCarrera());
 
-                System.out.println("Desea cambiar el nombre? (si\no)");
+                System.out.println("Desea cambiar el nombre? (si/no)");
                 String opcion = scanner.nextLine();
                 if (opcion.equals("si")){
 
@@ -73,7 +75,7 @@ public class EstudianteRepository {
                     estudiante.setNombre(nombre);
                 }
 
-                System.out.println("Desea cambiar el apellido? (si\no)");
+                System.out.println("Desea cambiar el apellido? (si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
 
@@ -82,16 +84,17 @@ public class EstudianteRepository {
 
                 }
 
-                System.out.println("Desea cambiar edad? (si\no)");
+                System.out.println("Desea cambiar edad? (si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
 
                     Float edad = scanner.nextFloat();
+                    scanner.nextLine();
                     estudiante.setEdad(edad);
 
                 }
 
-                System.out.println("Desea cambiar la carrera?(si\no)");
+                System.out.println("Desea cambiar la carrera?(si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
 
@@ -101,12 +104,17 @@ public class EstudianteRepository {
                 }
                 System.out.println("Estudiante Actualizado! 👌");
                 break; //Una vez que termina de actualizar al estudiante finaliza el bucle for.
-            }else{
-                System.out.println("El estudiante con la matricula "+numero+" no existe...");
-
             }
-
         }
-
+        if (!estudianteEncontrado){
+            System.out.println("El estudiante con la matricula "+numero+" no existe...");
+        }
     }
+
+    //FUNCION ELIMINAR ESTUDIANTE
+
+
+
+
+
 }
