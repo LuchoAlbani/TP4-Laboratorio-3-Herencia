@@ -1,8 +1,13 @@
+import com.albani.producto.view.Consola;
+
+import javax.swing.text.View;
 
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
+        Consola star = new Consola();
+
+        star.consola();
 
     }
 }

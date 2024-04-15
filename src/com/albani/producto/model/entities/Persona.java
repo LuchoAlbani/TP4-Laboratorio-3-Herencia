@@ -1,6 +1,6 @@
-package com.albani.producto.model;
+package com.albani.producto.model.entities;
 
-public class Persona {
+abstract class Persona {
 
     private String nombre;
 
@@ -11,9 +11,7 @@ public class Persona {
     public void saludar(){
         System.out.println("La persona: "+nombre+ "Saluda: ¡Hola! ");
     }
-
-
-
+    
     public Persona(String nombre, String apellido, Float edad) {
         this.nombre = nombre;
         this.apellido = apellido;
