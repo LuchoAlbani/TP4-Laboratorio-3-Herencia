@@ -70,7 +70,7 @@ public class EstudianteRepository {
                 System.out.println("Desea cambiar el nombre? (si/no)");
                 String opcion = scanner.nextLine();
                 if (opcion.equals("si")){
-
+                    System.out.println("Nombre: ");
                     String nombre = scanner.nextLine();
                     estudiante.setNombre(nombre);
                 }
@@ -78,7 +78,7 @@ public class EstudianteRepository {
                 System.out.println("Desea cambiar el apellido? (si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
-
+                    System.out.println("Apellido: ");
                     String apellido = scanner.nextLine();
                     estudiante.setApellido(apellido);
 
@@ -87,7 +87,7 @@ public class EstudianteRepository {
                 System.out.println("Desea cambiar edad? (si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
-
+                    System.out.println("Edad: ");
                     Float edad = scanner.nextFloat();
                     scanner.nextLine();
                     estudiante.setEdad(edad);
@@ -97,7 +97,7 @@ public class EstudianteRepository {
                 System.out.println("Desea cambiar la carrera?(si/no)");
                 opcion = scanner.nextLine();
                 if (opcion.equals("si")){
-
+                    System.out.println("Carrera: ");
                     String carrera = scanner.nextLine();
                     estudiante.setCarrera(carrera);
 
@@ -112,9 +112,31 @@ public class EstudianteRepository {
     }
 
     //FUNCION ELIMINAR ESTUDIANTE
+    public void eliminarEstudiante(ArrayList<Estudiante> listaEstudiantes){
 
+        System.out.println("Ingrese la matricula del estudiante a eliminar");
+        Integer matriculaEliminar = scanner.nextInt();          //Ingreso el numero de matricula a eliminar
+        scanner.nextLine();
 
+        for(Estudiante estudiante : listaEstudiantes){      //recorro la lista de estudiantes
 
+            if (estudiante.getMatricula().equals(matriculaEliminar)){       //si el numero de matricula es igual a la que deseo eliminar
 
+                System.out.println("La matricula "+estudiante.getMatricula()+" es del estudiante |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera|: "+estudiante.getCarrera());
+
+                System.out.println("Desea eliminarlo de la lista? (si/no)");        //pregunto al usuario si esta seguro que desea eliminarlo
+
+                String opcion = scanner.nextLine();
+                if(opcion.equals("si")){        // si confirma, lo remueve de la lista.
+
+                    listaEstudiantes.remove(estudiante); //elimina el estudiante en la posicion encontrada
+
+                }
+                break;
+            }
+
+        }
+
+    }
 
 }
