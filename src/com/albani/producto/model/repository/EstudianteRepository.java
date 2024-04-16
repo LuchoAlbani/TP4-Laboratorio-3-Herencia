@@ -102,7 +102,7 @@ public class EstudianteRepository {
                     estudiante.setCarrera(carrera);
 
                 }
-                System.out.println("Estudiante Actualizado! 👌");
+                System.out.println("Estudiante Actualizado! ✓ ");
                 break; //Una vez que termina de actualizar al estudiante finaliza el bucle for.
             }
         }
