@@ -27,7 +27,7 @@ public class ProfesorRepository {
         return null;
     }
 
-    //Funcion actualizar estudiante
+    //Funcion actualizar Profesor
     public void actualizarProfesor(Integer legajo, Profesor profesorActualizado){
 
         boolean profesorEncontrado = false;
