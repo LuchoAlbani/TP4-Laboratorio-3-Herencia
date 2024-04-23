@@ -13,24 +13,18 @@ public class EstudianteRepository {
 
         listaEstudiantes.add(estudiante);
 
+        System.out.println("Nuevo estudiante creado con exito");
+
     }
 
     //Funcion Leer estudiante
-    public void leerEstudiante(Integer matricula) {
-
-        boolean estudianteEncontrado = false;
-
-        for (int i = 0; i < listaEstudiantes.size(); i++) {
-            estudianteEncontrado = true;
-            if (listaEstudiantes.get(i).getMatricula().equals(matricula)) {
-                System.out.println(""+listaEstudiantes.get(i)); //Imprimo todos los datos del alumno
-                return;
+    public Estudiante leerEstudiante(Integer matricula) {
+        for (Estudiante estudiante : listaEstudiantes) {
+            if (estudiante.getMatricula().equals(matricula)) {
+                return estudiante;
             }
         }
-        if(!estudianteEncontrado){
-            System.out.println("El estudiante que esta buscando no existe");
-        }
-
+        return null;
     }
 
     //Funcion actualizar estudiante
@@ -41,8 +35,13 @@ public class EstudianteRepository {
         for(int i=0; i<listaEstudiantes.size(); i++){
 
             if (listaEstudiantes.get(i).getMatricula().equals(matricula)){
+
                 estudianteEncontrado = true;
+
                 listaEstudiantes.set(i, estudianteActualizado); //Toma dos elementos el índice del elemento que quieres reemplazar y el nuevo elemento.
+
+                System.out.println("Estudiante Actualizado! ✓ ");
+
                 return;
             }
         }
@@ -60,6 +59,9 @@ public class EstudianteRepository {
                 estudianteEncontrado = true;
 
                 listaEstudiantes.remove(i);
+
+                System.out.println("Estudiante eliminado con exito");
+
                 return;
             }
         }

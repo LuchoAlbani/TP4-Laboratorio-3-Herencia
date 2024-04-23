@@ -1,11 +1,10 @@
 package com.albani.producto.model.repository;
 
-import com.albani.producto.model.entities.Estudiante;
 import com.albani.producto.model.entities.Profesor;
 
 import java.util.ArrayList;
 
-public class ProfesorRepository{
+public class ProfesorRepository {
 
     ArrayList<Profesor> listaProfesores = new ArrayList<Profesor>();
 
@@ -14,27 +13,21 @@ public class ProfesorRepository{
 
         listaProfesores.add(profesor);
 
+        System.out.println("Nuevo profesor creado con exito");
+
     }
 
     //Funcion Leer Profesor
-    public void leerProfesor(Integer legajo) {
-
-        boolean profesorEncontrado = false;
-
-        for (int i = 0; i < listaProfesores.size(); i++) {
-            profesorEncontrado = true;
-            if (listaProfesores.get(i).getLegajo().equals(legajo)) {
-                System.out.println(""+listaProfesores.get(i)); //Imprimo todos los datos del profesor
-                return;
+    public Profesor leerProfesor(Integer legajo) {
+        for (Profesor profesor : listaProfesores) {
+            if (profesor.getLegajo().equals(legajo)) {
+                return profesor;
             }
         }
-        if(!profesorEncontrado){
-            System.out.println("El estudiante que esta buscando no existe");
-        }
-
+        return null;
     }
 
-    //Funcion actualizar Profesor
+    //Funcion actualizar estudiante
     public void actualizarProfesor(Integer legajo, Profesor profesorActualizado){
 
         boolean profesorEncontrado = false;
@@ -42,8 +35,13 @@ public class ProfesorRepository{
         for(int i=0; i<listaProfesores.size(); i++){
 
             if (listaProfesores.get(i).getLegajo().equals(legajo)){
+
                 profesorEncontrado = true;
+
                 listaProfesores.set(i, profesorActualizado); //Toma dos elementos el índice del elemento que quieres reemplazar y el nuevo elemento.
+
+                System.out.println("Profesor Actualizado! ✓ ");
+
                 return;
             }
         }
@@ -61,6 +59,9 @@ public class ProfesorRepository{
                 profesorEncontrado = true;
 
                 listaProfesores.remove(i);
+
+                System.out.println("Estudiante eliminado con exito");
+
                 return;
             }
         }

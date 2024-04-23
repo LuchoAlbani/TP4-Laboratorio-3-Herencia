@@ -1,11 +1,19 @@
 package com.albani.producto.view;
 
+import com.albani.producto.controller.ControladorEstudiante;
 import com.albani.producto.model.entities.Estudiante;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Consola {
+
+    ControladorEstudiante controladorEstudiante;
+
+    public Consola() {
+        this.controladorEstudiante = new ControladorEstudiante();
+    }
 
     Scanner scanner = new Scanner(System.in);
 
@@ -121,7 +129,7 @@ public class Consola {
     //FUNCIONES
 
     //FUNCION AGREGAR ESTUDIANTE
-    public void agregarEstudiante(ArrayList<Estudiante> listaEstudiantes) { //Paso por parametro la lista de estudiante
+    public void agregarEstudiante() { //Paso por parametro la lista de estudiante
 
         System.out.println("Ingresar los datos del estudiante");
         System.out.println("Nombre: ");
@@ -137,22 +145,18 @@ public class Consola {
         System.out.println("Carrera: ");
         String carrera = scanner.nextLine();
 
-        System.out.println("Nuevo estudiante creado con exito");
-
-        Estudiante nuevoEstudiante = new Estudiante(nombre, apellido, edad, carrera); //Utiliza el constructor de la clase Estudiante para inicializar el nuevo objeto con los valores proporcionados para nombre, apellido, edad y carrera
+        controladorEstudiante.agregarEstudiante(new Estudiante(nombre, apellido, edad, carrera));
 
     }
 
     //FUNCION LEER ESTUDIANTE
-    public void leerEstudiante(ArrayList<Estudiante> listaEstudiantes){
+    public void leerEstudiante(){
 
         System.out.println("Ingrese la Matricula del estudiante que desea ver: ");
         int matricula = scanner.nextInt();
         scanner.nextLine();
 
-
-
-
+        controladorEstudiante.leerEstudiante(matricula);
 
     }
 
@@ -171,17 +175,17 @@ public class Consola {
     }
 
     //FUNCION ACTUALIZAR ESTUDIANTE
-    public void actualizarEstudiante(ArrayList<Estudiante> listaEstudiantes){
+    public void actualizarEstudiante(){
         System.out.println("Ingrese la matricula del estudiante que desea modificar: ");
-        Integer numero = scanner.nextInt();
+        Integer matricula = scanner.nextInt();
         scanner.nextLine();
 
-        boolean estudianteEncontrado = false;
+        Estudiante estudiante = controladorEstudiante.leerEstudiante(matricula);    //LLamo a la funcion leer estudiante para buscarlo
+        if(estudiante == null){
+            System.out.println("El estudiante que esta buscando no existe");
+            return;
+        }
 
-        for (Estudiante estudiante : listaEstudiantes){ //recorro la lista
-
-            if (estudiante.getMatricula().equals(numero)){//si la matricula del estudiante actual es igual al numero que seleccione ahi implemento mi logica para modificar sus datos
-                estudianteEncontrado = true;
                 System.out.println("");
                 System.out.println("Datos del usuario que desea modificar");
                 System.out.println(" Nombre: "+estudiante.getNombre()+" Apellido: "+estudiante.getApellido()+" Edad: "+estudiante.getEdad()+" Carrera: "+estudiante.getCarrera());
@@ -221,40 +225,20 @@ public class Consola {
                     estudiante.setCarrera(carrera);
 
                 }
-                System.out.println("Estudiante Actualizado! ✓ ");
-                break; //Una vez que termina de actualizar al estudiante finaliza el bucle for.
-            }
-        }
-        if (!estudianteEncontrado){
-            System.out.println("El estudiante con la matricula "+numero+" no existe...");
-        }
+
+                controladorEstudiante.actualizarEstudiante(matricula, estudiante);
+
     }
 
     //FUNCION ELIMINAR ESTUDIANTE
-    public void eliminarEstudiante(ArrayList<Estudiante> listaEstudiantes){
+    public void eliminarEstudiante(){
 
         System.out.println("Ingrese la matricula del estudiante a eliminar");
         Integer matriculaEliminar = scanner.nextInt();          //Ingreso el numero de matricula a eliminar
         scanner.nextLine();
 
-        for(Estudiante estudiante : listaEstudiantes){      //recorro la lista de estudiantes
+        controladorEstudiante.eliminarEstudiante(matriculaEliminar);
 
-            if (estudiante.getMatricula().equals(matriculaEliminar)){       //si el numero de matricula es igual a la que deseo eliminar
-
-                System.out.println("La matricula "+estudiante.getMatricula()+" es del estudiante |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera|: "+estudiante.getCarrera());
-
-                System.out.println("Desea eliminarlo de la lista? (si/no)");        //pregunto al usuario si esta seguro que desea eliminarlo
-
-                String opcion = scanner.nextLine();
-                if(opcion.equals("si")){        // si confirma, lo remueve de la lista.
-
-                    listaEstudiantes.remove(estudiante); //elimina el estudiante en la posicion encontrada
-
-                }
-                break;
-            }
-
-        }
 
     }
 
