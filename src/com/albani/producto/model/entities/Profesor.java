@@ -6,7 +6,7 @@ public class Profesor extends Persona{              //Heredan nombre, apellido y
 
     private Integer legajo; //Atributo
 
-    private static Integer ultimoLegajo;
+    private static Integer ultimoLegajo = 0;
 
     //Constructor
     public Profesor(String nombre, String apellido, Float edad, String materia) {

@@ -3,6 +3,8 @@ package com.albani.producto.controller;
 import com.albani.producto.model.entities.Profesor;
 import com.albani.producto.model.repository.ProfesorRepository;
 
+import java.util.ArrayList;
+
 public class ControladorProfesor {
 
     ProfesorRepository profesorRepository;
@@ -26,5 +28,10 @@ public class ControladorProfesor {
     public void eliminarProfesor(Integer legajo){
         profesorRepository.eliminarProfesor(legajo);
     }
+
+    public ArrayList<Profesor> obtenerListaProfesores(){
+        return profesorRepository.getListaProfesores();
+    }
+
 
 }

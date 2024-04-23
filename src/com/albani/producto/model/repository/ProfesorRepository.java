@@ -70,6 +70,9 @@ public class ProfesorRepository {
         }
     }
 
+    public ArrayList<Profesor> getListaProfesores(){
+        return listaProfesores;
+    }
 
 
 

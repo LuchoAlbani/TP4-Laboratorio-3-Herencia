@@ -5,12 +5,14 @@ import com.albani.producto.controller.ControladorProfesor;
 import com.albani.producto.model.entities.Estudiante;
 import com.albani.producto.model.entities.Profesor;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Consola {
 
     ControladorEstudiante controladorEstudiante;
     ControladorProfesor controladorProfesor;
+
 
     public Consola() {
         this.controladorEstudiante = new ControladorEstudiante();
@@ -68,6 +70,7 @@ public class Consola {
         System.out.println("2.Leer Profesor");
         System.out.println("3.Actualizar Profesor");
         System.out.println("4.Eliminar Profesor");
+        System.out.println("5.Mostrar toda la Lista de Profesores");
         System.out.println("0.Salir");
         System.out.printf("Opcion: ");
         while (true) {
@@ -88,6 +91,9 @@ public class Consola {
                 case 4:
                     eliminarProfesor();
                     break;
+                case 5:
+                    mostrarListaProfesor();
+                    break;
                 case 0:
                     return;
                 default:
@@ -105,6 +111,7 @@ public class Consola {
         System.out.println("2.Leer Estudiante");
         System.out.println("3.Actualizar Estudiante");
         System.out.println("4.Eliminar Estudiante");
+        System.out.println("5.Mostrar toda la Lista de Estudiantes");
         System.out.println("0.Salir");
         System.out.printf("Opcion: ");
 
@@ -125,6 +132,9 @@ public class Consola {
                     break;
                 case 4:
                     eliminarEstudiante();
+                    break;
+                case 5:
+                    mostrarListaEstudiante();
                     break;
                 case 0:
                     return;
@@ -170,15 +180,16 @@ public class Consola {
 
     }
 
-    /*
+
     //FUNCION MOSTRAR LISTA ESTUDIANTE
-    public void mostrarListaEstudiante(ArrayList<Estudiante> listaEstudiantes){
+    public void mostrarListaEstudiante(){
+        ArrayList<Estudiante> listaEstudiantes = controladorEstudiante.obtenerListaEstudiantes();
         for (Estudiante estudiante : listaEstudiantes){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
             System.out.println(" |Matricula|: "+estudiante.getMatricula()+" |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera| "+estudiante.getCarrera());
         }
 
     }
-    */
+
 
     //FUNCION ACTUALIZAR ESTUDIANTE
     public void actualizarEstudiante(){
@@ -236,6 +247,7 @@ public class Consola {
 
     }
 
+
     //FUNCION ELIMINAR ESTUDIANTE
     public void eliminarEstudiante(){
 
@@ -247,14 +259,16 @@ public class Consola {
 
     }
 
-    //FUNCIONES PROFESOR
 
+
+    //FUNCIONES PROFESOR
     //FUNCION AGREGAR PROFESOR
     public void agregarProfesor() { //Paso por parametro la lista de Profesores
 
-        System.out.println("Ingresar los datos del estudiante");
+        System.out.println("Ingresar los datos del profesor");
         System.out.println("Nombre: ");
         String nombre = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println("Apellido: ");
         String apellido = scanner.nextLine();
@@ -263,12 +277,14 @@ public class Consola {
         Float edad = scanner.nextFloat();
         scanner.nextLine();
 
-        System.out.println("Legajo: ");
-        String legajo = scanner.nextLine();
+        System.out.println("Materia: ");
+        String materia = scanner.nextLine();
 
-        controladorProfesor.agregarProfesor(new Profesor(nombre, apellido, edad, legajo));
+
+        controladorProfesor.agregarProfesor(new Profesor(nombre, apellido, edad, materia));
 
     }
+
 
     //FUNCION LEER PROFESOR
     public void leerProfesor(){
@@ -280,15 +296,18 @@ public class Consola {
         controladorProfesor.leerProfesor(legajo);
 
     }
-    /*
-    //FUNCION MOSTRAR LISTA ESTUDIANTE
-    public void mostrarListaEstudiante(ArrayList<Estudiante> listaEstudiantes){
-        for (Estudiante estudiante : listaEstudiantes){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
-            System.out.println(" |Matricula|: "+estudiante.getMatricula()+" |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera| "+estudiante.getCarrera());
+
+
+    //FUNCION MOSTRAR LISTA PROFESORES
+    public void mostrarListaProfesor(){
+        ArrayList<Profesor> listaProfesor = controladorProfesor.obtenerListaProfesores();
+        for (Profesor profesor : listaProfesor){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
+            System.out.println(" |Legajo|: "+profesor.getLegajo()+" |Nombre|: "+profesor.getNombre()+" |Apellido|: "+profesor.getApellido()+" |Edad|: "+profesor.getEdad()+" |Materia| "+profesor.getMateria());
         }
 
     }
-    */
+
+
     //FUNCION ACTUALIZAR PROFESOR
     public void actualizarProfesor(){
         System.out.println("Ingrese el legajo del profesor que desea modificar: ");

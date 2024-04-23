@@ -1,6 +1,7 @@
 package com.albani.producto.model.repository;
 
 import com.albani.producto.model.entities.Estudiante;
+import com.albani.producto.model.entities.Profesor;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,9 @@ public class EstudianteRepository {
     }
 
 
+    public ArrayList<Estudiante> getListaEstudiantes(){
+        return listaEstudiantes;
+    }
 
 
 }
