@@ -1,23 +1,12 @@
 package com.albani.producto.view;
 
-import com.albani.producto.controller.ControladorEstudiante;
-import com.albani.producto.controller.ControladorProfesor;
 import com.albani.producto.model.entities.Estudiante;
-import com.albani.producto.model.entities.Profesor;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Consola {
-
-    ControladorEstudiante controladorEstudiante;
-    ControladorProfesor controladorProfesor;
-
-
-    public Consola() {
-        this.controladorEstudiante = new ControladorEstudiante();
-        this.controladorProfesor = new ControladorProfesor();
-    }
 
     Scanner scanner = new Scanner(System.in);
 
@@ -40,7 +29,7 @@ public class Consola {
             switch (opcion) {
 
                 case 1:
-                    menuProfesor();
+                    //menuProfesor();
                     break;
 
                 case 2:
@@ -80,19 +69,19 @@ public class Consola {
             switch (opcion){
 
                 case 1:
-                    agregarProfesor();
+                    //agregarProfesor();
                     break;
                 case 2:
-                    leerProfesor();
+                    //leerProfesor();
                     break;
                 case 3:
-                    actualizarProfesor();
+                   // actualizarProfesor();
                     break;
                 case 4:
-                    eliminarProfesor();
+                   // eliminarProfesor();
                     break;
                 case 5:
-                    mostrarListaProfesor();
+                   // mostrarListaProfesor();
                     break;
                 case 0:
                     return;
@@ -118,6 +107,7 @@ public class Consola {
         while (true) {
 
             opcion = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcion){
 
@@ -134,7 +124,7 @@ public class Consola {
                     eliminarEstudiante();
                     break;
                 case 5:
-                    mostrarListaEstudiante();
+
                     break;
                 case 0:
                     return;
@@ -149,7 +139,7 @@ public class Consola {
     //FUNCIONES ESTUDIANTE
 
     //FUNCION AGREGAR ESTUDIANTE
-    public void agregarEstudiante() { //Paso por parametro la lista de estudiante
+    public Estudiante agregarEstudiante() { //Paso por parametro la lista de estudiante
 
         System.out.println("Ingresar los datos del estudiante");
         System.out.println("Nombre: ");
@@ -165,43 +155,26 @@ public class Consola {
         System.out.println("Carrera: ");
         String carrera = scanner.nextLine();
 
-        controladorEstudiante.agregarEstudiante(new Estudiante(nombre, apellido, edad, carrera));
+        System.out.println("Nuevo estudiante creado con exito");
+
+        return new Estudiante(nombre, apellido, edad, carrera);
 
     }
 
     //FUNCION LEER ESTUDIANTE
-    public void leerEstudiante(){
+    public Integer leerEstudiante(){
 
         System.out.println("Ingrese la Matricula del estudiante que desea ver: ");
-        int matricula = scanner.nextInt();
+        Integer matricula = scanner.nextInt();
         scanner.nextLine();
 
-        controladorEstudiante.leerEstudiante(matricula);
-
-    }
-
-
-    //FUNCION MOSTRAR LISTA ESTUDIANTE
-    public void mostrarListaEstudiante(){
-        ArrayList<Estudiante> listaEstudiantes = controladorEstudiante.obtenerListaEstudiantes();
-        for (Estudiante estudiante : listaEstudiantes){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
-            System.out.println(" |Matricula|: "+estudiante.getMatricula()+" |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera| "+estudiante.getCarrera());
-        }
+        return matricula;
 
     }
 
 
     //FUNCION ACTUALIZAR ESTUDIANTE
-    public void actualizarEstudiante(){
-        System.out.println("Ingrese la matricula del estudiante que desea modificar: ");
-        Integer matricula = scanner.nextInt();
-        scanner.nextLine();
-
-        Estudiante estudiante = controladorEstudiante.leerEstudiante(matricula);    //LLamo a la funcion leer estudiante para buscarlo
-        if(estudiante == null){
-            System.out.println("El estudiante que esta buscando no existe");
-            return;
-        }
+    public Estudiante actualizarEstudiante(Estudiante estudiante){
 
                 System.out.println("");
                 System.out.println("Datos del usuario que desea modificar");
@@ -243,26 +216,28 @@ public class Consola {
 
                 }
 
-                controladorEstudiante.actualizarEstudiante(matricula, estudiante);
+                return estudiante;
 
     }
 
 
     //FUNCION ELIMINAR ESTUDIANTE
-    public void eliminarEstudiante(){
+    public Integer eliminarEstudiante(){
 
         System.out.println("Ingrese la matricula del estudiante a eliminar");
         Integer matriculaEliminar = scanner.nextInt();          //Ingreso el numero de matricula a eliminar
         scanner.nextLine();
 
-        controladorEstudiante.eliminarEstudiante(matriculaEliminar);
+        return matriculaEliminar;
 
     }
 
 
 
+
     //FUNCIONES PROFESOR
     //FUNCION AGREGAR PROFESOR
+    /*
     public void agregarProfesor() { //Paso por parametro la lista de Profesores
 
         System.out.println("Ingresar los datos del profesor");
@@ -374,8 +349,6 @@ public class Consola {
         controladorProfesor.eliminarProfesor(legajoEliminar);
 
     }
-
-
-
+    */
 
 }

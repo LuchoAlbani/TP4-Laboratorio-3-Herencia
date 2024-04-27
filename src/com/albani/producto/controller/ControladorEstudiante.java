@@ -1,41 +1,52 @@
 package com.albani.producto.controller;
 
 import com.albani.producto.model.entities.Estudiante;
-import com.albani.producto.model.entities.Profesor;
 import com.albani.producto.model.repository.EstudianteRepository;
-
-import java.util.ArrayList;
-
+import com.albani.producto.view.Consola;
 
 public class ControladorEstudiante {
 
+    //LLamo a mi Repository y View
+
     EstudianteRepository estudianteRepository;
+    Consola viewConsola;
 
-    public ControladorEstudiante(){
-        this.estudianteRepository = new EstudianteRepository();
+    public ControladorEstudiante(EstudianteRepository estudianteRepository, Consola viewConsola) {
+        this.estudianteRepository = estudianteRepository;
+        this.viewConsola = viewConsola;
     }
 
-    public void agregarEstudiante(Estudiante estudiante){
+    //Funciones repository y view
+
+    public void agregarEstudiante(){
+        Estudiante estudiante = viewConsola.agregarEstudiante();
         estudianteRepository.agregarEstudiante(estudiante);
-    }
-
-    public Estudiante leerEstudiante(Integer matricula){
-        return estudianteRepository.leerEstudiante(matricula);  //asume que estudianteRepository.leerEstudiante(matricula);
-                                                                //devuelve un objeto Estudiante. Si no se encuentra ningún estudiante con
-                                                                //la matrícula dada, esta función debería devolver null.
 
     }
 
-    public void actualizarEstudiante(Integer matricula, Estudiante estudiante){
-        estudianteRepository.actualizarEstudiante(matricula, estudiante);
+    public void LeerEstudiante(){
+        Integer matricula = viewConsola.leerEstudiante();
+        Estudiante estudiante = estudianteRepository.leerEstudiante(matricula);
+
+        System.out.println("El estudiante buscado es: "+estudiante);
     }
 
-    public void eliminarEstudiante(Integer matricula){
-        estudianteRepository.eliminarEstudiante(matricula);
+    public void actualizarEstudiante(){
+        Integer matricula = viewConsola.leerEstudiante();
+        Estudiante estudiante = estudianteRepository.leerEstudiante(matricula);
+
+        if(estudiante!=null) {
+            Estudiante estudianteActualizado = viewConsola.actualizarEstudiante(estudiante);
+            estudianteRepository.actualizarEstudiante(matricula, estudianteActualizado);
+        }else{
+            System.out.println("Estudiante no encontrado");
+        }
+
     }
 
-    public ArrayList<Estudiante> obtenerListaEstudiantes(){
-        return estudianteRepository.getListaEstudiantes();
+    public void eliminarEstudiante(){
+        Integer matriculaEliminar = viewConsola.eliminarEstudiante();
+        estudianteRepository.eliminarEstudiante(matriculaEliminar);
     }
 
 

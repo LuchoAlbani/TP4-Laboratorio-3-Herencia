@@ -1,7 +1,7 @@
 package com.albani.producto.model.repository;
 
 import com.albani.producto.model.entities.Estudiante;
-import com.albani.producto.model.entities.Profesor;
+
 
 import java.util.ArrayList;
 
@@ -9,12 +9,12 @@ public class EstudianteRepository {
 
     ArrayList<Estudiante> listaEstudiantes = new ArrayList<Estudiante>();
 
+
     //Agregar estudiante a la lista
     public void agregarEstudiante(Estudiante estudiante){
 
         listaEstudiantes.add(estudiante);
 
-        System.out.println("Nuevo estudiante creado con exito");
 
     }
 
@@ -57,6 +57,7 @@ public class EstudianteRepository {
 
         for (int i=0; i<listaEstudiantes.size(); i++){
             if (listaEstudiantes.get(i).getMatricula().equals(matricula)){
+
                 estudianteEncontrado = true;
 
                 listaEstudiantes.remove(i);
@@ -68,6 +69,13 @@ public class EstudianteRepository {
         }
         if (!estudianteEncontrado){
             System.out.println("El estudiante que esta buscando no existe");
+        }
+    }
+
+    //FUNCION MOSTRAR LISTA ESTUDIANTES
+    public void mostrarListaEstudiante(){
+        for (Estudiante estudiante : listaEstudiantes){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
+            System.out.println(" |Matricula|: "+estudiante.getMatricula()+" |Nombre|: "+estudiante.getNombre()+" |Apellido|: "+estudiante.getApellido()+" |Edad|: "+estudiante.getEdad()+" |Carrera| "+estudiante.getCarrera());
         }
     }
 
