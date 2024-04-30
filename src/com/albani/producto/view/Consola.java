@@ -1,7 +1,7 @@
 package com.albani.producto.view;
 
 import com.albani.producto.model.entities.Estudiante;
-
+import com.albani.producto.model.entities.Profesor;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,48 +12,15 @@ public class Consola {
 
     int opcion;
 
-    public void consola() {
-
-        while (true) {
-
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("");
+    public void MenuPrincipal() {
             System.out.println("BIENVENIDO AL MENU PRINCIPAL");
             System.out.println("1.Menu Profesor");
             System.out.println("2.Menu Estudiante");
             System.out.println("0.Salir");
-            System.out.printf("Opcion: ");
-
-            opcion = scanner.nextInt();
-
-            switch (opcion) {
-
-                case 1:
-                    //menuProfesor();
-                    break;
-
-                case 2:
-                    menuEstudiante();
-                    break;
-                case 0:
-                    System.out.println("Saliendo del programa...");
-                    scanner.close();
-                    return;
-
-                default:
-                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
-
-
-            }
-
-
-        }
 
     }
 
     public void menuProfesor() {
-
-        System.out.println("");
         System.out.println("MENU PROFESOR");
         System.out.println("1.Agregar Profesor");
         System.out.println("2.Leer Profesor");
@@ -61,40 +28,11 @@ public class Consola {
         System.out.println("4.Eliminar Profesor");
         System.out.println("5.Mostrar toda la Lista de Profesores");
         System.out.println("0.Salir");
-        System.out.printf("Opcion: ");
-        while (true) {
 
-            opcion = scanner.nextInt();
-
-            switch (opcion){
-
-                case 1:
-                    //agregarProfesor();
-                    break;
-                case 2:
-                    //leerProfesor();
-                    break;
-                case 3:
-                   // actualizarProfesor();
-                    break;
-                case 4:
-                   // eliminarProfesor();
-                    break;
-                case 5:
-                   // mostrarListaProfesor();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
-
-            }
-        }
     }
 
     public void menuEstudiante(){
 
-        System.out.println("");
         System.out.println("MENU ESTUDIANTE");
         System.out.println("1.Agregar Estudiante");
         System.out.println("2.Leer Estudiante");
@@ -102,38 +40,14 @@ public class Consola {
         System.out.println("4.Eliminar Estudiante");
         System.out.println("5.Mostrar toda la Lista de Estudiantes");
         System.out.println("0.Salir");
-        System.out.printf("Opcion: ");
 
-        while (true) {
 
-            opcion = scanner.nextInt();
-            scanner.nextLine();
+    }
 
-            switch (opcion){
-
-                case 1:
-                    agregarEstudiante();
-                    break;
-                case 2:
-                    leerEstudiante();
-                    break;
-                case 3:
-                    actualizarEstudiante();
-                    break;
-                case 4:
-                    eliminarEstudiante();
-                    break;
-                case 5:
-
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
-
-            }
-        }
-
+    public int obtenerOpcionMenu() {
+        // Se obtiene la opción del menú que el usuario desea seleccionar
+        System.out.print("Seleccione una opción: ");
+        return scanner.nextInt();
     }
 
     //FUNCIONES ESTUDIANTE
@@ -232,13 +146,17 @@ public class Consola {
 
     }
 
-
-
+    //FUNCION MOSTRAR LISTA ESTUDIANTES
+    public void mostrarListaEstudiantes(ArrayList<Estudiante> listaEstudiantes) {
+        for (Estudiante estudiante : listaEstudiantes) { // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
+            System.out.println(" |Matricula|: " + estudiante.getMatricula() + " |Nombre|: " + estudiante.getNombre() + " |Apellido|: " + estudiante.getApellido() + " |Edad|: " + estudiante.getEdad() + " |Carrera| " + estudiante.getCarrera());
+        }
+    }
 
     //FUNCIONES PROFESOR
     //FUNCION AGREGAR PROFESOR
-    /*
-    public void agregarProfesor() { //Paso por parametro la lista de Profesores
+
+    public Profesor agregarProfesor() { //Paso por parametro la lista de Profesores
 
         System.out.println("Ingresar los datos del profesor");
         System.out.println("Nombre: ");
@@ -255,12 +173,13 @@ public class Consola {
         System.out.println("Materia: ");
         String materia = scanner.nextLine();
 
+        System.out.println("Nuevo Profesor creado con exito");
 
-        controladorProfesor.agregarProfesor(new Profesor(nombre, apellido, edad, materia));
+        return new Profesor(nombre, apellido, edad, materia);
 
     }
 
-
+    /*
     //FUNCION LEER PROFESOR
     public void leerProfesor(){
 
