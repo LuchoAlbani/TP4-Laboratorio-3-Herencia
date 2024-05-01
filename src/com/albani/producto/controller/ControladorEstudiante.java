@@ -15,13 +15,77 @@ public class ControladorEstudiante {
     //LLamo a mi Repository y View
     EstudianteRepository estudianteRepository;
     Consola viewConsola;
+    ControladorProfesor controladorProfesor;
 
-    public ControladorEstudiante(EstudianteRepository estudianteRepository, Consola viewConsola) {
+    public ControladorEstudiante(EstudianteRepository estudianteRepository, Consola viewConsola, ControladorProfesor controladorProfesor) {
         this.estudianteRepository = estudianteRepository;
         this.viewConsola = viewConsola;
+        this.controladorProfesor = controladorProfesor;
     }
 
-    //Funciones repository y view
+    //MENUS
+
+    public void menuPrincipal(){
+        while (true) {
+
+            viewConsola.MenuPrincipal();
+            int opcion = viewConsola.obtenerOpcionMenu();
+
+            switch (opcion){
+                case 1:
+                    menuEstudiante();
+                    break;
+                case 2:
+                    controladorProfesor.menuProfesor();
+                case 0:
+                    return;
+                default:
+                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
+
+            }
+
+        }
+
+    }
+
+    public void menuEstudiante(){
+
+        while (true) {
+
+            viewConsola.menuEstudiante();
+
+            int opcion = viewConsola.obtenerOpcionMenu();
+
+
+            switch (opcion){
+
+                case 1:
+                    agregarEstudiante();
+                    break;
+                case 2:
+                    leerEstudiante();
+                    break;
+                case 3:
+                    actualizarEstudiante();
+                    break;
+                case 4:
+                    eliminarEstudiante();
+                    break;
+                case 5:
+                    mostrarListaEstudiantes();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
+
+            }
+
+        }
+
+    }
+
+    //FUNCIONES
     public void agregarEstudiante(){
         Estudiante estudiante = viewConsola.agregarEstudiante();
         estudianteRepository.agregarEstudiante(estudiante);
@@ -61,67 +125,6 @@ public class ControladorEstudiante {
 
     }
 
-
-    public void menuPrincipal(){
-        while (true) {
-
-            viewConsola.MenuPrincipal();
-            int opcion = viewConsola.obtenerOpcionMenu();
-            scanner.nextLine();
-
-            switch (opcion){
-
-                case 1:
-                    menuEstudiante();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
-
-            }
-
-        }
-
-    }
-
-    public void menuEstudiante(){
-
-        while (true) {
-
-            viewConsola.menuEstudiante();
-
-            int opcion = viewConsola.obtenerOpcionMenu();
-            scanner.nextLine();
-            scanner.nextLine();
-
-            switch (opcion){
-
-                case 1:
-                    agregarEstudiante();
-                    break;
-                case 2:
-                    leerEstudiante();
-                    break;
-                case 3:
-                    actualizarEstudiante();
-                    break;
-                case 4:
-                    eliminarEstudiante();
-                    break;
-                case 5:
-                    mostrarListaEstudiantes();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("La opcion seleccionada es incorrecta... vuelva a intentar");
-
-            }
-
-        }
-
-    }
 
 
 

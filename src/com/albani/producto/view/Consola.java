@@ -14,8 +14,8 @@ public class Consola {
 
     public void MenuPrincipal() {
             System.out.println("BIENVENIDO AL MENU PRINCIPAL");
-            System.out.println("1.Menu Profesor");
-            System.out.println("2.Menu Estudiante");
+            System.out.println("1.Menu Estudiante");
+            System.out.println("2.Menu Profesor");
             System.out.println("0.Salir");
 
     }
@@ -47,7 +47,11 @@ public class Consola {
     public int obtenerOpcionMenu() {
         // Se obtiene la opción del menú que el usuario desea seleccionar
         System.out.print("Seleccione una opción: ");
-        return scanner.nextInt();
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+
+        return opcion;
+
     }
 
     //FUNCIONES ESTUDIANTE
@@ -179,42 +183,22 @@ public class Consola {
 
     }
 
-    /*
+
     //FUNCION LEER PROFESOR
-    public void leerProfesor(){
+    public Integer leerProfesor(){
 
         System.out.println("Ingrese el Legajo del profesor que desea ver: ");
         int legajo = scanner.nextInt();
         scanner.nextLine();
 
-        controladorProfesor.leerProfesor(legajo);
-
-    }
-
-
-    //FUNCION MOSTRAR LISTA PROFESORES
-    public void mostrarListaProfesor(){
-        ArrayList<Profesor> listaProfesor = controladorProfesor.obtenerListaProfesores();
-        for (Profesor profesor : listaProfesor){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
-            System.out.println(" |Legajo|: "+profesor.getLegajo()+" |Nombre|: "+profesor.getNombre()+" |Apellido|: "+profesor.getApellido()+" |Edad|: "+profesor.getEdad()+" |Materia| "+profesor.getMateria());
-        }
+        return legajo;
 
     }
 
 
     //FUNCION ACTUALIZAR PROFESOR
-    public void actualizarProfesor(){
-        System.out.println("Ingrese el legajo del profesor que desea modificar: ");
-        Integer legajo = scanner.nextInt();
-        scanner.nextLine();
+    public Profesor actualizarProfesor(Profesor profesor){
 
-        Profesor profesor = controladorProfesor.leerProfesor(legajo);    //LLamo a la funcion leer profesor para buscarlo
-        if(profesor == null){
-            System.out.println("El profesor que esta buscando no existe");
-            return;
-        }
-
-        System.out.println("");
         System.out.println("Datos del usuario que desea modificar");
         System.out.println(" Nombre: "+profesor.getNombre()+" Apellido: "+profesor.getApellido()+" Edad: "+profesor.getEdad()+" Materia: "+profesor.getMateria());
 
@@ -254,20 +238,28 @@ public class Consola {
 
         }
 
-        controladorProfesor.actualizarProfesor(legajo, profesor);
+        return profesor;
 
     }
 
     //FUNCION ELIMINAR PROFESOR
-    public void eliminarProfesor(){
+    public Integer eliminarProfesor(){
 
         System.out.println("Ingrese el legajo del profesor a eliminar");
         Integer legajoEliminar = scanner.nextInt();          //Ingreso el numero de matricula a eliminar
         scanner.nextLine();
 
-        controladorProfesor.eliminarProfesor(legajoEliminar);
+        return legajoEliminar;
 
     }
-    */
+
+    //FUNCION MOSTRAR LISTA PROFESORES
+    public void mostrarListaProfesor(ArrayList<Profesor> listaProfesor){
+        for (Profesor profesor : listaProfesor){ // ":" signif para cada, almacenara cada elemento indiv de la listaEstud.
+            System.out.println(" |Legajo|: "+profesor.getLegajo()+" |Nombre|: "+profesor.getNombre()+" |Apellido|: "+profesor.getApellido()+" |Edad|: "+profesor.getEdad()+" |Materia| "+profesor.getMateria());
+        }
+
+    }
+
 
 }
