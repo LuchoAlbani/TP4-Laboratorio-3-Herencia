@@ -6,11 +6,8 @@ import com.albani.producto.model.repository.ProfesorRepository;
 import com.albani.producto.view.Consola;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ControladorProfesor {
-
-Scanner scanner = new Scanner(System.in);
 
  ProfesorRepository profesorRepository;
  Consola viewConsola;

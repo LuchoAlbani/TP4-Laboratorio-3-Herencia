@@ -11,7 +11,16 @@ abstract class Persona {
     public void saludar(){
         System.out.println("La persona: "+nombre+ "Saluda: ¡Hola! ");
     }
-    
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                ", nombre='" + getNombre() + '\'' +
+                ", apellido='" + getApellido() + '\'' +
+                ", edad=" + getEdad() +
+                '}';
+    }
+
     public Persona(String nombre, String apellido, Float edad) {
         this.nombre = nombre;
         this.apellido = apellido;

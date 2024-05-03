@@ -5,12 +5,8 @@ import com.albani.producto.model.repository.EstudianteRepository;
 import com.albani.producto.view.Consola;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 
 public class ControladorEstudiante {
-
-    Scanner scanner = new Scanner(System.in);
 
     //LLamo a mi Repository y View
     EstudianteRepository estudianteRepository;
@@ -96,7 +92,7 @@ public class ControladorEstudiante {
         Integer matricula = viewConsola.leerEstudiante();
         Estudiante estudiante = estudianteRepository.leerEstudiante(matricula);
 
-        System.out.println("El estudiante buscado es: "+estudiante);
+        System.out.println("El estudiante buscado es: "+estudiante.toString());
     }
 
     public void actualizarEstudiante(){

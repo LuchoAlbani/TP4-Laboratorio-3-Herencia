@@ -38,4 +38,15 @@ public class Profesor extends Persona{              //Heredan nombre, apellido y
         System.out.printf(getNombre()+"Estoy anotando en el pizzarron");
     }
 
+    @Override
+    public String toString() {
+        return "Profesor{" +
+                "legajo=" + getLegajo() +
+                ", nombre='" + getNombre() + '\'' +
+                ", apellido='" + getApellido() + '\'' +
+                ", edad=" + getEdad() +
+                ", materia='" + getMateria() + '\'' +
+                '}';
+    }
+
 }

@@ -38,5 +38,15 @@ public class Estudiante extends Persona{           //Hereda nombre, apellido y e
         System.out.printf(getNombre()+" :Estoy haciendo tarea");
     }
 
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "matricula=" + getMatricula() +
+                ", nombre='" + getNombre() + '\'' +
+                ", apellido='" + getApellido() + '\'' +
+                ", edad=" + getEdad() +
+                ", carrera='" + getCarrera() + '\'' +
+                '}';
+    }
 
 }
